@@ -4,16 +4,18 @@ const Dinosaur = require('../models/dinosaur.js');
 
 describe('Park', function() {
 
-  let park;
-  let dinosaur1;
-  let dinosaur2;
-  let dinosaur3;
+  let park
+  let dinosaur1
+  let dinosaur2
+  let dinosaur3
+  let dinosaur4
 
   beforeEach(function () {
     park = new Park("Jurassic Park", 200)
-    dinosaur1 = new Dinosaur('t-rex', 'carnivore', 50);
-    dinosaur2 = new Dinosaur("triceritops", "herbivore", 35);
-    dinosaur3 = new Dinosaur("stegasaurus", "herbivore", 70);
+    dinosaur1 = new Dinosaur("t-rex", "carnivore", 50)
+    dinosaur2 = new Dinosaur("triceritops", "herbivore", 35)
+    dinosaur3 = new Dinosaur("stegasaurus", "herbivore", 70)
+    dinosaur4 = new Dinosaur("triceritops", "herbivore", 20)
 
   })
 
@@ -41,9 +43,7 @@ describe('Park', function() {
     park.addDinosaur(dinosaur1)
     park.addDinosaur(dinosaur2)
     park.removeDinosaurByName("t-rex")
-    const expected = [dinosaur2]
-    const actual = park.dinosaurs
-    assert.deepStrictEqual(actual, expected)
+    assert.deepStrictEqual(park.dinosaurs, [dinosaur2])
   });
 
   it('should be able to find the dinosaur that attracts the most visitors', function() {
@@ -53,12 +53,36 @@ describe('Park', function() {
     assert.deepStrictEqual(park.mostVisitors(), dinosaur3)
   });
 
-  xit('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function() {
+    park.addDinosaur(dinosaur1)
+    park.addDinosaur(dinosaur2)
+    park.addDinosaur(dinosaur3)
+    park.addDinosaur(dinosaur4)
+    assert.deepStrictEqual(park.dinosaursOfSpecies("triceritops"), [dinosaur2, dinosaur4])
+  });
 
-  xit('should be able to calculate the total number of visitors per day');
+  it('should be able to calculate the total number of visitors per day', function() {
+    park.addDinosaur(dinosaur1)
+    park.addDinosaur(dinosaur2)
+    park.addDinosaur(dinosaur3)
+    park.addDinosaur(dinosaur4)
+    assert.strictEqual(park.totalVisitorsPerDay(), 175)
+  });
 
-  xit('should be able to calculate the total number of visitors per year');
+  it('should be able to calculate the total number of visitors per year', function() {
+    park.addDinosaur(dinosaur1)
+    park.addDinosaur(dinosaur2)
+    park.addDinosaur(dinosaur3)
+    park.addDinosaur(dinosaur4)
+    assert.strictEqual(park.totalVisitorsPerYear(), 63875)
+  });
 
-  xit('should be able to calculate total revenue for one year');
+  it('should be able to calculate total revenue for one year', function() {
+    park.addDinosaur(dinosaur1)
+    park.addDinosaur(dinosaur2)
+    park.addDinosaur(dinosaur3)
+    park.addDinosaur(dinosaur4)
+    assert.strictEqual(park.totalRevenuePerYear(), 12775000)
+  });
 
 });
