@@ -15,7 +15,7 @@ describe('Park', function() {
     dinosaur1 = new Dinosaur("t-rex", "carnivore", 50)
     dinosaur2 = new Dinosaur("triceritops", "herbivore", 35)
     dinosaur3 = new Dinosaur("stegasaurus", "herbivore", 70)
-    dinosaur4 = new Dinosaur("triceritops", "herbivore", 20)
+    dinosaur4 = new Dinosaur("stegasaurus", "herbivore", 45)
 
   })
 
@@ -54,35 +54,35 @@ describe('Park', function() {
   });
 
   it('should be able to find all dinosaurs of a particular species', function() {
-    park.addDinosaur(dinosaur1)
-    park.addDinosaur(dinosaur2)
-    park.addDinosaur(dinosaur3)
-    park.addDinosaur(dinosaur4)
-    assert.deepStrictEqual(park.dinosaursOfSpecies("triceritops"), [dinosaur2, dinosaur4])
+    park.addDinosaur(dinosaur1);
+    park.addDinosaur(dinosaur2);
+    park.addDinosaur(dinosaur3);
+    park.addDinosaur(dinosaur4);
+    assert.deepStrictEqual(park.ofSpecies("stegasaurus"), [dinosaur3, dinosaur4]);
   });
 
   it('should be able to calculate the total number of visitors per day', function() {
-    park.addDinosaur(dinosaur1)
-    park.addDinosaur(dinosaur2)
-    park.addDinosaur(dinosaur3)
-    park.addDinosaur(dinosaur4)
-    assert.strictEqual(park.totalVisitorsPerDay(), 175)
+    park.addDinosaur(dinosaur1);
+    park.addDinosaur(dinosaur2);
+    park.addDinosaur(dinosaur3);
+    park.addDinosaur(dinosaur4);
+    assert.deepStrictEqual(park.totalVisitors(), 200);
   });
 
   it('should be able to calculate the total number of visitors per year', function() {
-    park.addDinosaur(dinosaur1)
-    park.addDinosaur(dinosaur2)
-    park.addDinosaur(dinosaur3)
-    park.addDinosaur(dinosaur4)
-    assert.strictEqual(park.totalVisitorsPerYear(), 63875)
+    park.addDinosaur(dinosaur1);
+    park.addDinosaur(dinosaur2);
+    park.addDinosaur(dinosaur3);
+    park.addDinosaur(dinosaur4);
+    assert.deepStrictEqual(park.totalVisitorsYear(), 73000);
   });
 
   it('should be able to calculate total revenue for one year', function() {
-    park.addDinosaur(dinosaur1)
-    park.addDinosaur(dinosaur2)
-    park.addDinosaur(dinosaur3)
-    park.addDinosaur(dinosaur4)
-    assert.strictEqual(park.totalRevenuePerYear(), 12775000)
+    park.addDinosaur(dinosaur1);
+    park.addDinosaur(dinosaur2);
+    park.addDinosaur(dinosaur3);
+    park.addDinosaur(dinosaur4);
+    assert.deepStrictEqual(park.totalRevenue(), 14600000);
   });
 
 });

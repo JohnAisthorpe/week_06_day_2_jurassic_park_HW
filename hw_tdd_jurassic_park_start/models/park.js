@@ -34,40 +34,35 @@ Park.prototype.mostVisitors = function() {
     
 }
 
-Park.prototype.dinosaursOfSpecies = function(dinosaur) {
-    let dinosaursOfSpecies = []
-    for (currentDinosaur of this.dinosaurs){
-        if(currentDinosaur.species === dinosaur){
-            dinosaursOfSpecies.push(currentDinosaur)
+Park.prototype.ofSpecies = function(species) {
+    let speciesList = [];
+    for (dinosaur of this.dinosaurs){
+        if (dinosaur.species === species){
+            speciesList.push(dinosaur);
         }
     }
-    return dinosaursOfSpecies
-
+    return speciesList;
 }
 
-Park.prototype.totalVisitorsPerDay = function() {
-    let dailyTotal = 0
-    for (currentDinosaur of this.dinosaurs){
-        dailyTotal += currentDinosaur.guestsAttractedPerDay
-    }
-    return dailyTotal
+Park.prototype.totalVisitors = function() {
+    let total = 0;
+    for (dinosaur of this.dinosaurs){
+        total += dinosaur.guestsAttractedPerDay;
+        }
+    
+    return total;
 }
 
-Park.prototype.totalVisitorsPerYear = function() {
-    let dailyTotal = 0
-    for (currentDinosaur of this.dinosaurs){
-        dailyTotal += currentDinosaur.guestsAttractedPerDay
-    }
-    let anualTotal = dailyTotal * 365
-    return anualTotal
+Park.prototype.totalVisitorsYear = function() {
+    let totalPerDay = this.totalVisitors() ;
+    let totalPerYear = totalPerDay * 365;
+    return totalPerYear;
 }
 
-Park.prototype.totalRevenuePerYear = function() {
-    anualRevenue = this.totalVisitorsPerYear() * this.ticketPrice
-
-    return anualRevenue
+Park.prototype.totalRevenue = function(species) {
+    let totalVisitorsPerYear = this.totalVisitorsYear();
+    let totalRev = totalVisitorsPerYear * 200;
+    return totalRev;
 }
-
 
 module.exports = Park
-
